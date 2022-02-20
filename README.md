@@ -1,4 +1,19 @@
 # UdacityCICD
+version: 2.1
+orbs:
+  node: circleci/node@4.7.0
+jobs:
+  build:
+    executor:
+      name: node/default
+      tag: '10.4'
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+      - run: npm run test
+
 version: 2
 jobs: # we now have TWO jobs, so that a workflow can coordinate them!
   one: # This is our first job.
